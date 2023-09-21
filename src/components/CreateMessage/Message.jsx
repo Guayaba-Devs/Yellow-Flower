@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 import { useLocation } from "react-router-dom";
 
 export const Message = () => {
@@ -15,6 +16,15 @@ export const Message = () => {
 
   const generateLink = (e) => {
     e.preventDefault();
+    if(message.trim() === ""){
+      toast.error("Debes ingresar un mensaje", {
+        style:{
+          background: "#242424",
+          color: "#fff",
+        }
+      });
+      return;
+    }
     const generatedUrl = `${url}/message/${btoa(message)}`;
     console.log(generatedUrl);
     setMessageUrl(generatedUrl);
@@ -34,6 +44,7 @@ export const Message = () => {
 
   return (
     <div>
+    <div><Toaster></Toaster></div>
       <h1 className="text-3xl font-bold mb-6">
         Envía una flor amarilla!
         <span role="img" aria-label="flower">
