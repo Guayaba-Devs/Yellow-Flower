@@ -34,8 +34,7 @@ export const Message = () => {
 
 
             <p>
-
-                <a href="">
+                <Link></Link>
             </p>
 
 
