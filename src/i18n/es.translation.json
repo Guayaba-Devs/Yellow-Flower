@@ -1,0 +1,23 @@
+{
+  "translation": {
+    "message": {
+      "title": "Envía una flor amarilla!",
+      "description": "Escribe un mensaje y envíalo a tu persona favorita!",
+      "form": {
+        "input": {
+          "placeholder": "Ingresa tu mensaje para esa persona :D",
+          "error": "Debes ingresar un mensaje"
+        },
+        "submit": "Generar link"
+      },
+      "copyLink": "Copiar el link",
+      "copied": "Copiado",
+      "generatedUrl": "URL generada"
+    },
+    "flower": {
+      "title": "Alguien que te quiere te envio una flor!",
+      "andMessage": "Y un mensaje...",
+      "developedBy": "Desarrollado por"
+    }
+  }
+}
