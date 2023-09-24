@@ -1,10 +1,10 @@
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export const Message = () => {
   const url = window.location.origin;
-  const { pathname } = useLocation();
+  const { t } = useTranslation();
 
   const [message, setMessage] = useState("");
   const [messageUrl, setMessageUrl] = useState("");
@@ -16,12 +16,12 @@ export const Message = () => {
 
   const generateLink = (e) => {
     e.preventDefault();
-    if(message.trim() === ""){
-      toast.error("Debes ingresar un mensaje", {
-        style:{
+    if (message.trim() === "") {
+      toast.error(t("message.form.input.error"), {
+        style: {
           background: "#242424",
           color: "#fff",
-        }
+        },
       });
       return;
     }
@@ -31,7 +31,7 @@ export const Message = () => {
   };
 
   const copyToClipboard = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const textArea = document.createElement("textarea");
     textArea.value = messageUrl;
     document.body.appendChild(textArea);
@@ -39,61 +39,61 @@ export const Message = () => {
     document.execCommand("copy");
     document.body.removeChild(textArea);
     setCopied(true);
-    setTimeout(() => setCopied(false), 2000); 
+    setTimeout(() => setCopied(false), 2000);
   };
 
   return (
     <div>
-    <div><Toaster></Toaster></div>
+      <div>
+        <Toaster />
+      </div>
       <h1 className="text-3xl font-bold mb-6">
-        Envía una flor amarilla!
+        {t("message.title")}
         <span role="img" aria-label="flower">
           🌻
         </span>
       </h1>
 
-      <p className="text-xl mb-3">
-        Escribe un mensaje y envíalo a tu persona favorita!
-      </p>
+      <p className="text-xl mb-3">{t("message.description")}</p>
 
-      <form action="" className="w-full flex items-center justify-center flex-col">
+      <form
+        action=""
+        className="w-full flex items-center justify-center flex-col"
+      >
         <textarea
           className="border-2 border-yellow-300 rounded-lg p-2 w-full h-24 mt-2 max-w-lg mb-3"
           onChange={handleMessageChange}
-          placeholder="Ingresa tu mensaje para esa persona :D"
+          placeholder={t("message.form.input.placeholder")}
         />
         <button
-          className="bg-yellow-300 hover:bg-yellow-400 text-black rounded-lg px-4 py-2 mt-2 w-32"
+          className="bg-yellow-300 hover:bg-yellow-400 text-black rounded-lg px-4 py-2 mt-2"
           onClick={generateLink}
         >
-          Generar Link
+          {t("message.form.submit")}
         </button>
         {messageUrl && (
           <button
             className="bg-green-500 hover:bg-green-600 text-white rounded-lg px-4 py-2 mt-2 w-32"
             onClick={copyToClipboard}
           >
-            {copied ? "Copiado" : "Copiar el link"}
+            {copied ? t("message.copied") : t("message.copyLink")}
           </button>
         )}
       </form>
 
-      <div className="mt-5">
-        {messageUrl && (
-          <p className="bg-slate-600 max-w-lg mx-auto rounded-sm p-4 overflow-hidden">
-            URL generada:{" "}
-            <a
-              className="bg-stone-400 overflow-x-scroll"
-              href={messageUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {messageUrl}
-            </a>
-          </p>
-        )}
-      </div>
+      {messageUrl && (
+        <div className="flex flex-col gap-2 items-center mt-5 bg-slate-600 max-w-lg mx-auto rounded-sm p-4">
+          <span>{t("message.generatedUrl")}:</span>
+          <a
+            className="bg-stone-400 break-all fit-content"
+            href={messageUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {messageUrl}
+          </a>
+        </div>
+      )}
     </div>
   );
 };
-
