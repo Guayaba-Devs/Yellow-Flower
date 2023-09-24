@@ -1,0 +1,23 @@
+{
+  "translation": {
+    "message": {
+      "title": "Send a yellow flower!",
+      "description": "Write a message and send it to your favorite person!",
+      "form": {
+        "input": {
+          "placeholder": "Enter your message for that person :D",
+          "error": "You must enter a message"
+        },
+        "submit": "Generate link"
+      },
+      "copyLink": "Copy link",
+      "copied": "Copied",
+      "generatedUrl": "Generated URL"
+    },
+    "flower": {
+      "title": "Someone who loves you sent you a flower!",
+      "andMessage": "And a message...",
+      "developedBy": "Developed by"
+    }
+  }
+}
